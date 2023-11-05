@@ -1,5 +1,6 @@
 package sample.cafekiosk.unit;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import sample.cafekiosk.unit.beverages.Americano;
 import sample.cafekiosk.unit.beverages.Latte;
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CafeKioskTest {
 
+    @DisplayName("음료 1개 추가 테스트")
     @Test
     void add_manual_test() {
         CafeKiosk cafeKiosk = new CafeKiosk();
