@@ -8,7 +8,6 @@ import sample.cafekiosk.spring.api.controller.order.request.OrderCreateRequest;
 import sample.cafekiosk.spring.api.service.order.response.OrderResponse;
 import sample.cafekiosk.spring.domain.product.Product;
 import sample.cafekiosk.spring.domain.product.ProductRepository;
-import sample.cafekiosk.spring.domain.product.ProductType;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,13 +26,13 @@ class OrderServiceTest {
     @Autowired
     private OrderService orderService;
 
-    @DisplayName("주문번호 리스트를 받아 주문을 생성한다.")
+    @DisplayName("상품번호 리스트를 받아 주문을 생성한다.")
     @Test
     void createOrder() {
         //given
-        Product product1 = createProduct(HANDMADE, "001", 1000);
-        Product product2 = createProduct(HANDMADE, "002", 3000);
-        Product product3 = createProduct(HANDMADE, "003", 5000);
+        Product product1 = createProduct("001", 1000);
+        Product product2 = createProduct("002", 3000);
+        Product product3 = createProduct("003", 5000);
         productRepository.saveAll(List.of(product1, product2, product3));
 
         OrderCreateRequest request = OrderCreateRequest.builder()
@@ -56,9 +55,9 @@ class OrderServiceTest {
                 );
     }
 
-    private Product createProduct(ProductType type, String productNumber, int price) {
+    private Product createProduct(String productNumber, int price) {
         return Product.builder()
-                .type(type)
+                .type(HANDMADE)
                 .productNumber(productNumber)
                 .price(price)
                 .sellingStatus(SELLING)
