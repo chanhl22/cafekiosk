@@ -101,7 +101,7 @@ class ProductRepositoryTest {
                 );
     }
 
-    @DisplayName("가장 마지막으로 저장한 상의 상품번호를 읽어온다.")
+    @DisplayName("가장 마지막으로 저장한 상품의 상품번호를 읽어온다.")
     @Test
     void findLatestProductNumber() {
         //given
