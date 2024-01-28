@@ -32,10 +32,8 @@ class ProductServiceTest {
     @Test
     void createProduct() {
         //given
-        Product product1 = createProduct("001", HANDMADE, SELLING, "아메리카노", 4000);
-        Product product2 = createProduct("002", HANDMADE, HOLD, "카페라떼", 4500);
-        Product product3 = createProduct("003", HANDMADE, STOP_SELLING, "팥빙수", 7000);
-        productRepository.saveAll(List.of(product1, product2, product3));
+        Product product = createProduct("001", HANDMADE, SELLING, "아메리카노", 4000);
+        productRepository.save(product);
 
         ProductCreateRequest request = ProductCreateRequest.builder()
                 .type(HANDMADE)
@@ -50,7 +48,7 @@ class ProductServiceTest {
         //then
         assertThat(productResponse)
                 .extracting("productNumber", "type", "sellingStatus", "name", "price")
-                .contains("004", HANDMADE, SELLING, "카푸치노", 5000);
+                .contains("002", HANDMADE, SELLING, "카푸치노", 5000);
     }
 
     private Product createProduct(String productNumber, ProductType type, ProductSellingStatus sellingStatus, String name, int price) {
