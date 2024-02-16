@@ -20,4 +20,8 @@ public class ApiResponse<T> {
         return new ApiResponse<>(httpStatus, httpStatus.name(), data);
     }
 
+    public static <T> ApiResponse<T> ok(T data) {
+        return new ApiResponse<>(HttpStatus.OK, HttpStatus.OK.name(), data);
+    }
+
 }
