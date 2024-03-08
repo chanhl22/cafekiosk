@@ -24,6 +24,9 @@ public class OrderStatisticsService {
         );
 
         // 총 매출 합계를 계산하고
+        int totalAmount = orders.stream()
+                .mapToInt(Order::getTotalPrice)
+                .sum();
 
         // 메일 전송
     }
