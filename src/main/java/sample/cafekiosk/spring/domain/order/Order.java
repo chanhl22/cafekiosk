@@ -1,6 +1,7 @@
 package sample.cafekiosk.spring.domain.order;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import sample.cafekiosk.spring.domain.BaseEntity;
@@ -40,6 +41,15 @@ public class Order extends BaseEntity {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderProduct> orderProducts = new ArrayList<>();
+
+    @Builder
+    private Order(Long id, OrderStatus orderStatus, int totalPrice, LocalDateTime registeredDateTime, List<OrderProduct> orderProducts) {
+        this.id = id;
+        this.orderStatus = orderStatus;
+        this.totalPrice = totalPrice;
+        this.registeredDateTime = registeredDateTime;
+        this.orderProducts = orderProducts;
+    }
 
     public Order(List<Product> products, LocalDateTime registeredDateTime) {
         this.orderStatus = OrderStatus.INIT;
