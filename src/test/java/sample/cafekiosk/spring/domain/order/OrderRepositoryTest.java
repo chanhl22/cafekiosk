@@ -58,7 +58,6 @@ class OrderRepositoryTest {
         Order order3 = createOrder(products, PAYMENT_COMPLETED, LocalDateTime.of(2024, 10, 31, 0, 0));
         Order order4 = createOrder(products, PAYMENT_COMPLETED, LocalDateTime.of(2024, 10, 31, 10, 0));
         Order order5 = createOrder(products, PAYMENT_COMPLETED, LocalDateTime.of(2024, 10, 31, 23, 59, 59));
-        orderRepository.saveAll(List.of(order1, order2, order3, order4, order5));
 
         //when
         List<Order> orders = orderRepository.findOrdersBy(LocalDateTime.of(2024, 10, 31, 0, 0), LocalDateTime.of(2024, 10, 31, 23, 59, 59), PAYMENT_COMPLETED);
@@ -83,11 +82,12 @@ class OrderRepositoryTest {
     }
 
     private Order createOrder(List<Product> products, OrderStatus orderStatus, LocalDateTime registeredDateTime) {
-        return Order.builder()
+        Order order = Order.builder()
                 .products(products)
                 .orderStatus(orderStatus)
                 .registeredDateTime(registeredDateTime)
                 .build();
+        return orderRepository.save(order);
     }
 
 }
