@@ -7,12 +7,14 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import sample.cafekiosk.spring.api.controller.order.OrderController;
 import sample.cafekiosk.spring.api.controller.product.ProductController;
+import sample.cafekiosk.spring.api.controller.valid.ValidController;
 import sample.cafekiosk.spring.api.service.order.OrderService;
 import sample.cafekiosk.spring.api.service.product.ProductService;
 
 @WebMvcTest(controllers = {
         OrderController.class,
-        ProductController.class
+        ProductController.class,
+        ValidController.class
 })
 public abstract class ControllerTestSupport {
 
